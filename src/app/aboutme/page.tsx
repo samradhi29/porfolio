@@ -1,70 +1,86 @@
-import React from 'react';
+"use client";
+import React from "react";
+import { GraduationCap, Brain, Rocket } from "lucide-react";
 
 const aboutData = [
   {
-    title: 'College',
-    content: `Currently pursuing B.Tech in Artificial Intelligence and Data Science at the Indian Institute of Information Technology, Kottayam, Kerala (2023–2027).`
+    id: "education",
+    icon: "education",
+    title: "Education",
+    content: "B.Tech in AI & Data Science, IIIT Kottayam (2023–2027).",
   },
   {
-    title: ' School',
-    content: `Completed my schooling at Deep Jyoti Public School, Bhikangaon, Madhya Pradesh.`
+    id: "dsa",
+    icon: "brain",
+    title: "Problem Solver",
+    content: "Solved 400+ problems on LeetCode & GFG.",
   },
   {
-    title: ' Tech Passion',
-    content: `I enjoy building real-world projects using the MERN stack, creating clean and responsive user interfaces, and solving logical challenges through code. I also love solving DSA problems to sharpen my skills.`
+    id: "gsoc",
+    icon: "rocket",
+    title: "Open Source",
+    content: "GSoC contributor, building impactful projects.",
   },
-  {
-    title: ' My Personality',
-    content: `I'm creative, expressive, and always eager to learn. I enjoy sketching, styling outfits, and staying curious, confident, and driven in everything I do.`
-  },
-  {
-    title: 'DSA Profiles',
-    content: (
-      <>
-        You can check out my problem-solving profiles:
-        <ul className="list-disc list-inside mt-2 text-fuchsia-300">
-          <li>
-            <a
-              href="https://leetcode.com/u/samradhirathore/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-fuchsia-400"
-            >
-              LeetCode Profile
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.geeksforgeeks.org/user/samradhajd3/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-fuchsia-400"
-            >
-              GeeksforGeeks Profile
-            </a>
-          </li>
-        </ul>
-      </>
-    )
-  }
 ];
 
 export default function AboutMe() {
-  return (
-    <section id="about" className="bg-zinc-900 text-white py-16 px-6 md:px-20">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">About Me</h2>
+  const renderIcon = (iconType : any) => {
+    switch (iconType) {
+      case "education":
+        return <GraduationCap className="w-12 h-12 text-purple-400 group-hover:text-pink-400 transition-colors duration-300" />;
+      case "brain":
+        return <Brain className="w-12 h-12 text-purple-400 group-hover:text-pink-400 transition-colors duration-300" />;
+      case "rocket":
+        return <Rocket className="w-12 h-12 text-purple-400 group-hover:text-pink-400 transition-colors duration-300" />;
+      default:
+        return null;
+    }
+  };
 
-        <div className="space-y-6">
+  return (
+    <section className="py-20 px-6 text-white">
+      <div className="max-w-5xl mx-auto text-center">
+        {/* Visible Heading with Better Contrast */}
+        <h2 className="text-2xl md:text-5xl font-medium bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent mb-4 drop-shadow-lg">
+          About Me
+        </h2>
+        
+        {/* Clean underline */}
+        <div className="w-16 h-1 mx-auto mb-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg"></div>
+        
+        {/* Enhanced Visible Subheading */}
+        <p className="text-lg md:text-xl text-white max-w-3xl mx-auto mb-16 drop-shadow-md">
+          <span className="bg-gradient-to-r from-purple-300 to-purple-400 bg-clip-text text-transparent font-semibold">Full Stack Developer</span>
+          <span className="text-gray-300 mx-2 font-bold">•</span>
+          <span className="bg-gradient-to-r from-pink-300 to-pink-400 bg-clip-text text-transparent font-semibold">Problem Solver</span>
+          <span className="text-gray-300 mx-2 font-bold">•</span>
+          <span className="bg-gradient-to-r from-purple-300 to-purple-400 bg-clip-text text-transparent font-semibold">AI/ML Enthusiast</span>
+        </p>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {aboutData.map((item, index) => (
             <div
-              key={index}
-              className="bg-gradient-to-br from-black to-zinc-900 rounded-2xl p-6 shadow-lg hover:scale-[1.02] transition-transform duration-300"
+              key={item.id}
+              className="relative group p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-white/10 hover:border-purple-500/30 shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105"
             >
-              {item.title && (
-                <h3 className="text-2xl font-semibold text-fuchsia-300 mb-2">{item.title}</h3>
-              )}
-              <p className="text-base leading-relaxed text-gray-200">{item.content}</p>
+              {/* Icon */}
+              <div className="mb-6 flex justify-center">
+                {renderIcon(item.icon)}
+              </div>
+              
+              {/* Title */}
+              <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                {item.title}
+              </h3>
+              
+              {/* Content */}
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {item.content}
+              </p>
+              
+              {/* Subtle glow effect */}
+              <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 blur transition-opacity duration-300 -z-10"></div>
             </div>
           ))}
         </div>

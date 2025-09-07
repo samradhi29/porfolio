@@ -1,35 +1,104 @@
 'use client';
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+
 export default function Navbar() {
-    const router = useRouter();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navigationItems = [
+    { label: 'Home', id: 'home' },
+    { label: 'Skills', id: 'skills' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'About', id: 'about' },
+    { label: 'Contact', id: 'contact' },
+  ];
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <div className="fixed top-0 w-full z-50 bg-black bg-opacity-80 px-4 shadow-md">
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-20 text-white">
-        
-        {/* Profile Image */}
-     <a
-  href="https://drive.google.com/file/d/1ARSzLSRgIpuSKfQrsLJdTw7BN6Or4_2V/view?usp=drive_link"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <button className="bg-black px-4 py-2 rounded-3xl border border-pink-200 text-white font-semibold hover:brightness-110 transition">
-    Resume
-  </button>
-</a>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      isScrolled ? 'bg-slate-950/95 backdrop-blur-2xl shadow-2xl border-b border-slate-800/50' : 'bg-transparent backdrop-blur-sm'
+    }`}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* Brand */}
+          <div onClick={() => scrollToSection('home')} className="cursor-pointer text-white font-bold text-xl lg:text-2xl">
+            Samradhi Rathore
+          </div>
 
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-4">
+            {navigationItems.map(item => (
+              <button key={item.id} onClick={() => scrollToSection(item.id)}
+                className="text-slate-300 hover:text-white px-4 py-2 font-medium transition">{item.label}</button>
+            ))}
 
-        {/* Navigation Links */}
-        <div className="flex gap-6 text-lg font-medium text-purple-200 bg-gradient-to-r from-zinc-900 to-black border border-pink-200 p-2 rounded-3xl shadow">
-          <span className="hover:text-purple-400 cursor-pointer transition" onClick={()=> router.push('/Skills')}>Skills</span>
-          <span className="hover:text-purple-400 cursor-pointer transition" onClick={()=> router.push('/projects')}>Projects</span>
-          <span className="hover:text-purple-400 cursor-pointer transition" onClick={()=> router.push('/aboutme')}>About Me</span>
+            {/* Resume Button */}
+            <a
+              href="https://drive.google.com/file/d/1ARSzLSRgIpuSKfQrsLJdTw7BN6Or4_2V/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="px-5 py-2.5 rounded-lg border border-slate-600 text-slate-300 hover:text-white hover:border-pink-400/50 transition-all duration-300 font-medium">
+                Resume
+              </button>
+            </a>
+
+            {/* Contact Button */}
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold hover:from-pink-600 hover:to-purple-600 hover:shadow-lg transition-all duration-300 hover:scale-105"
+            >
+              Contact Me
+            </button>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden text-white p-2">
+            {isMobileMenuOpen ? '✖' : '☰'}
+          </button>
         </div>
 
-        {/* Contact Button */}
-        <button className="bg-gradient-to-r from-purple-400 to-pink-400 px-4 py-2 rounded-3xl border-2 border-pink-200 text-white font-semibold hover:brightness-110 transition"  onClick={()=> router.push('/contactme')}>
-          Contact Me
-        </button>
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden bg-slate-900/95 backdrop-blur-xl rounded-xl mt-2 py-4 flex flex-col space-y-2">
+            {navigationItems.map(item => (
+              <button key={item.id} onClick={() => scrollToSection(item.id)}
+                className="text-left px-6 py-2 text-slate-300 hover:text-white">{item.label}</button>
+            ))}
+
+            {/* Resume Button */}
+            <a
+              href="https://drive.google.com/file/d/1ARSzLSRgIpuSKfQrsLJdTw7BN6Or4_2V/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6"
+            >
+              <button className="w-full px-4 py-2.5 rounded-lg border border-slate-600 text-slate-300 hover:text-white hover:border-pink-400/50 transition-all duration-300 font-medium">
+                Resume
+              </button>
+            </a>
+
+            {/* Contact Button */}
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="w-full px-4 py-2.5 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold hover:from-pink-600 hover:to-purple-600 transition-all duration-300"
+            >
+              Contact Me
+            </button>
+          </div>
+        )}
       </div>
-    </div>
+    </nav>
   );
 }
