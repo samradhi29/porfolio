@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false); // ensures client-only
 
   useEffect(() => {
+    setMounted(true); // mark as mounted on client
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -20,6 +22,7 @@ export default function Navbar() {
   ];
 
   const scrollToSection = (id: string) => {
+    if (!mounted) return; // only scroll on client
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
     setIsMobileMenuOpen(false);
@@ -45,7 +48,7 @@ export default function Navbar() {
 
             {/* Resume Button */}
             <a
-              href="https://drive.google.com/file/d/1ARSzLSRgIpuSKfQrsLJdTw7BN6Or4_2V/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1N_DuBXvXQ_ojosOM-_5EtqgtV_DU7PQG/view"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -79,7 +82,7 @@ export default function Navbar() {
 
             {/* Resume Button */}
             <a
-              href="https://drive.google.com/file/d/1ARSzLSRgIpuSKfQrsLJdTw7BN6Or4_2V/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1N_DuBXvXQ_ojosOM-_5EtqgtV_DU7PQG/view"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6"
