@@ -139,8 +139,9 @@ export default function Skills() {
 
   return (
     <>
+      {/* <h2 className='text-xl text-pink-400'>skills</h2> */}
       <DynamicCosmicBackground />
-      
+    
       <div className="relative z-10 min-h-screen text-white flex flex-col items-center pt-24 px-4 overflow-hidden">
         <div className="relative mb-32 z-10">
           <div className="px-8 py-4 bg-gradient-to-r from-gray-900/90 to-black/90 border-2 border-purple-400/50 rounded-xl shadow-2xl shadow-purple-500/30 text-2xl font-bold backdrop-blur-sm hover:shadow-purple-500/50 transition-all duration-300">

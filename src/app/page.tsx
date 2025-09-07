@@ -6,6 +6,7 @@ import ProjectSection from './projects/page';
 import AboutMe from './aboutme/page';
 import ContactMe from './contactme/page';
 import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { Typewriter } from 'react-simple-typewriter';
 
 // Dynamic Cosmic Background
 const DynamicCosmicBackground = () => {
@@ -25,7 +26,6 @@ const DynamicCosmicBackground = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
@@ -127,15 +127,27 @@ export default function Home() {
         id="home"
         className="relative z-10 flex flex-col justify-center items-center h-screen text-center px-4 text-white pt-24"
       >
-        <h1 className="text-5xl font-bold mb-4">
-          Hello, I'm <span className="text-purple-400">Samradhi Rathore</span>
-        </h1>
-        <p className="max-w-2xl text-gray-300">
+      <h1 className="text-5xl font-medium mb-4">
+  Hello, I'm{' '}
+  <span className="text-purple-400">
+    <Typewriter
+      words={["Samradhi Rathore"]}
+      loop={false}
+      cursor
+      cursorStyle="|"
+      typeSpeed={100}
+      deleteSpeed={50}
+    />
+  </span>
+</h1>
+
+
+        <p className="max-w-2xl text-gray-300 mb-12">
           Bridging design and functionality, I build full-stack apps that are visually appealing and technically sound.
         </p>
 
         {/* Socials */}
-        <div className="flex gap-12 mt-40 mb-5">
+        <div className="flex gap-12 mt-30">
           <a href="https://github.com/samradhi29" target="_blank" rel="noopener noreferrer">
             <FaGithub className="text-3xl hover:text-purple-400 transition" />
           </a>
