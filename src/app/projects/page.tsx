@@ -150,6 +150,25 @@ const DynamicCosmicBackground = () => {
 
 // Updated projects with images
 const projects = [
+{
+  name: 'AI PlacementMate',
+  description: "Built a full-stack AI-powered job intelligence system with OCR-based job ingestion and LLM parsing using Gemini and LangChain. Developed a repository intelligence pipeline with vector embeddings stored in Supabase enabling RAG-based semantic Q&A over codebases. Implemented meeting analysis using AssemblyAI for transcription and summarization, along with an email management system supporting bulk Gmail API (OAuth2) delivery and AI-powered content enhancement.",
+  techStack: ['Next.js', 'Node.js', 'Express.js', 'PostgreSQL', 'Supabase', 'Vector DB', 'LangChain', 'Gemini', 'AssemblyAI', 
+'Cloudinary', 'ShadCN/UI'],
+  github: 'https://github.com/samradhi29/placementmate',
+  live: 'https://github.com/samradhi29/placementmate',
+  color: 'purple',
+  image: '/image.png'
+},
+   {
+    name: 'Socitopia',
+    description: "A full-stack Society Management System with role-based access, visitor OTP login, Excel flat registration, complaints with anonymous mode, lost & found management, real-time meetings with chat, event RSVPs with gallery, and automated payments.",
+    techStack: ['Next.js', 'TypeScript', 'MongoDB', 'Stripe', 'Node-Cron', 'Shadcn/UI'],
+    github: 'https://github.com/samradhi29/smartsociety',
+    live: 'https://github.com/samradhi29/smartsociety',
+    color: 'blue',
+    image: '/soceity.png'
+  },
   {
     name: 'Virtumeet',
     description: 'A video conferencing app like Google Meet with real-time chat',
@@ -159,15 +178,7 @@ const projects = [
     color: 'purple',
     image: '/video.png' // Add your project image path
   },
-  {
-    name: 'Socitopia',
-    description: "A full-stack Society Management System with role-based access, visitor OTP login, Excel flat registration, complaints with anonymous mode, lost & found management, real-time meetings with chat, event RSVPs with gallery, and automated payments.",
-    techStack: ['Next.js', 'TypeScript', 'MongoDB', 'Razorpay', 'Node-Cron', 'Shadcn/UI'],
-    github: 'https://github.com/samradhi29/smartsociety',
-    live: 'https://github.com/samradhi29/smartsociety',
-    color: 'blue',
-    image: '/soceity.png'
-  },
+ 
   {
     name: 'Finance Tracker',
     description: 'Track your income, expenses, and savings with simple visual breakdowns.',
@@ -177,6 +188,15 @@ const projects = [
     color: 'green',
     image: '/finnance.png'
   },
+    {
+  name: "Portfolio",
+  description: "A modern developer portfolio website showcasing projects, skills, and experience with a clean, responsive, and interactive UI.",
+  techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Node.js"],
+  github: "https://github.com/samradhi29/porfolio",
+  live: "https://github.com/samradhi29/porfolio",
+  color: "purple",
+  image: "/image2.png",
+}
 ];
 
 export default function ProjectSection() {

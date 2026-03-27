@@ -129,12 +129,13 @@ export default function Skills() {
 
   const backend = [
     "Node.js", "Express", "REST API", "JWT/OAuth",
-    "SQL", "MongoDB", "PostgreSQL"
+    "SQL", "MongoDB", "PostgreSQL" ,"Prisma" , "langchain"
   ];
 
   const tools = [
-    "Python", "Java", "C/C++", "VS Code", "Git", "GitHub", "Linux",
-    "Vercel", "Netlify", "Render", "UX/UI Design", "Figma", "Postman"
+     "Java", "C/C++", "VS Code", "Git", "GitHub", "Linux", "python",
+    "Vercel", "Netlify", "Render", "docker" , "UX/UI Design", "Figma", "Postman" 
+
   ];
 
   return (
